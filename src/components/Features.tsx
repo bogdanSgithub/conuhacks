@@ -33,9 +33,13 @@ export const Features = () => {
         </h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <Card key={feature.title} className="animate-fade-up border-primary/10" style={{ animationDelay: `${index * 0.1}s` }}>
+            <Card 
+              key={feature.title} 
+              className="animate-fade-up border-primary/10 transform transition-all duration-500 hover:scale-105 hover:-translate-y-2" 
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               <CardHeader>
-                <feature.icon className="w-12 h-12 text-primary mb-4" />
+                <feature.icon className="w-12 h-12 text-primary mb-4 transform transition-all duration-300 hover:rotate-12" />
                 <CardTitle className="text-primary">{feature.title}</CardTitle>
               </CardHeader>
               <CardContent>

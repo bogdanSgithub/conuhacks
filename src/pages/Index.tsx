@@ -1,12 +1,13 @@
 import { Hero } from "@/components/Hero";
 import { Features } from "@/components/Features";
-import { Testimonials } from "@/components/Testimonials";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import EyeCursor from "@/components/EyeCursor";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <EyeCursor />
       <header className="fixed top-0 w-full bg-white/80 backdrop-blur-sm z-50 border-b">
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between h-16">
@@ -14,9 +15,6 @@ const Index = () => {
             <div className="space-x-4">
               <Link to="/features">
                 <Button variant="ghost">Features</Button>
-              </Link>
-              <Link to="/testimonials">
-                <Button variant="ghost">Testimonials</Button>
               </Link>
               <Button className="bg-accent hover:bg-accent/90">Pre-order</Button>
             </div>
@@ -27,7 +25,6 @@ const Index = () => {
       <main className="pt-16">
         <Hero />
         <Features />
-        <Testimonials />
         
         <section className="py-20 bg-primary text-white text-center">
           <div className="container mx-auto px-4">
