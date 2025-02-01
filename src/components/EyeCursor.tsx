@@ -1,4 +1,9 @@
 import { useEffect, useRef } from 'react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const EyeCursor = () => {
   const eyeRef = useRef<HTMLDivElement>(null);
@@ -27,16 +32,27 @@ const EyeCursor = () => {
   }, []);
 
   return (
-    <div className="fixed top-4 right-4 z-50">
-      <div className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
-        <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
-          <div 
-            ref={eyeRef}
-            className="w-4 h-4 bg-primary rounded-full animate-eye-follow"
-          />
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div className="fixed top-4 right-4 z-50 cursor-help">
+          <div className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
+              <div 
+                ref={eyeRef}
+                className="w-4 h-4 bg-primary rounded-full animate-eye-follow"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      </TooltipTrigger>
+      <TooltipContent className="bg-white p-4 shadow-lg rounded-lg">
+        <div className="space-y-2">
+          <p className="font-semibold text-primary">Contact Scout</p>
+          <p className="text-sm">Email: info@scoutdevice.com</p>
+          <p className="text-sm">Phone: (555) 123-4567</p>
+        </div>
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
