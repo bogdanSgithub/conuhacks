@@ -71,9 +71,18 @@ export default {
             transform: "translateY(0)",
           },
         },
+        "eye-follow": {
+          "0%": {
+            transform: "translate(0, 0)",
+          },
+          "100%": {
+            transform: "translate(var(--mouse-x), var(--mouse-y))",
+          },
+        },
       },
       animation: {
         "fade-up": "fade-up 0.5s ease-out",
+        "eye-follow": "eye-follow 0.2s ease-out forwards",
       },
     },
   },

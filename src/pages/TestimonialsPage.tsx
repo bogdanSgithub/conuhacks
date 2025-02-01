@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import EyeCursor from "@/components/EyeCursor";
 
 const testimonials = [
   {
@@ -77,6 +78,7 @@ const TestimonialsPage = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <EyeCursor />
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center mb-8">
           <Link to="/">
