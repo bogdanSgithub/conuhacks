@@ -3,8 +3,11 @@ import { Features } from "@/components/Features";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import EyeCursor from "@/components/EyeCursor";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Index = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
     <div className="min-h-screen">
       <EyeCursor />
@@ -16,6 +19,15 @@ const Index = () => {
               <Link to="/features">
                 <Button variant="ghost">Features</Button>
               </Link>
+              {isAuthenticated ? (
+                <Link to="/shopping-list">
+                  <Button variant="ghost">My List</Button>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <Button variant="ghost">Login</Button>
+                </Link>
+              )}
               <Button className="bg-accent hover:bg-accent/90">Pre-order</Button>
             </div>
           </nav>
