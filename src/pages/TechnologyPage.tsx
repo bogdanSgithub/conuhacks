@@ -25,7 +25,7 @@ const TechnologyPage = () => {
         </p>
 
         <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div className="space-y-6 animate-fade-up bg-[#F2FCE2] p-8 rounded-lg">
+          <div className="space-y-6 animate-fade-up p-8 rounded-lg">
             <div className="flex items-center gap-4">
               <Eye className="w-8 h-8 text-primary" />
               <h2 className="text-2xl font-bold text-primary">YOLO Object Recognition</h2>
@@ -38,7 +38,7 @@ const TechnologyPage = () => {
             </p>
           </div>
 
-          <div className="space-y-6 animate-fade-up bg-[#D3E4FD] p-8 rounded-lg">
+          <div className="space-y-6 animate-fade-up p-8 rounded-lg">
             <div className="flex items-center gap-4">
               <Cpu className="w-8 h-8 text-primary" />
               <h2 className="text-2xl font-bold text-primary">Raspberry Pi Processing Unit</h2>
@@ -51,7 +51,7 @@ const TechnologyPage = () => {
             </p>
           </div>
 
-          <div className="space-y-6 animate-fade-up bg-[#FDE1D3] p-8 rounded-lg">
+          <div className="space-y-6 animate-fade-up p-8 rounded-lg">
             <div className="flex items-center gap-4">
               <Mic className="w-8 h-8 text-primary" />
               <h2 className="text-2xl font-bold text-primary">High-Fidelity Audio System</h2>
@@ -66,7 +66,7 @@ const TechnologyPage = () => {
             </p>
           </div>
 
-          <div className="space-y-6 animate-fade-up bg-[#F1F0FB] p-8 rounded-lg">
+          <div className="space-y-6 animate-fade-up p-8 rounded-lg">
             <div className="flex items-center gap-4">
               <Speaker className="w-8 h-8 text-primary" />
               <h2 className="text-2xl font-bold text-primary">How It All Works Together</h2>
