@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Eye, Cpu, Mic, Speaker } from "lucide-react";
 import EyeCursor from "@/components/EyeCursor";
 
 const TechnologyPage = () => {
@@ -25,8 +25,11 @@ const TechnologyPage = () => {
         </p>
 
         <div className="grid md:grid-cols-2 gap-12 mb-16">
-          <div className="space-y-6 animate-fade-up">
-            <h2 className="text-2xl font-bold text-primary">YOLO Object Recognition</h2>
+          <div className="space-y-6 animate-fade-up bg-[#F2FCE2] p-8 rounded-lg">
+            <div className="flex items-center gap-4">
+              <Eye className="w-8 h-8 text-primary" />
+              <h2 className="text-2xl font-bold text-primary">YOLO Object Recognition</h2>
+            </div>
             <p className="text-gray-600">
               Scout utilizes the state-of-the-art YOLO (You Only Look Once) object detection system, 
               which provides real-time recognition of products with remarkable accuracy. This advanced 
@@ -35,8 +38,11 @@ const TechnologyPage = () => {
             </p>
           </div>
 
-          <div className="space-y-6 animate-fade-up">
-            <h2 className="text-2xl font-bold text-primary">Raspberry Pi Processing Unit</h2>
+          <div className="space-y-6 animate-fade-up bg-[#D3E4FD] p-8 rounded-lg">
+            <div className="flex items-center gap-4">
+              <Cpu className="w-8 h-8 text-primary" />
+              <h2 className="text-2xl font-bold text-primary">Raspberry Pi Processing Unit</h2>
+            </div>
             <p className="text-gray-600">
               At the heart of Scout is a powerful Raspberry Pi computer, which processes 
               the video feed and runs our AI algorithms. This compact yet capable unit 
@@ -45,8 +51,11 @@ const TechnologyPage = () => {
             </p>
           </div>
 
-          <div className="space-y-6 animate-fade-up">
-            <h2 className="text-2xl font-bold text-primary">High-Fidelity Audio System</h2>
+          <div className="space-y-6 animate-fade-up bg-[#FDE1D3] p-8 rounded-lg">
+            <div className="flex items-center gap-4">
+              <Mic className="w-8 h-8 text-primary" />
+              <h2 className="text-2xl font-bold text-primary">High-Fidelity Audio System</h2>
+            </div>
             <p className="text-gray-600">
               Scout features a premium microphone for clear voice commands and a 
               high-quality speaker for crisp audio feedback. The audio system uses 
@@ -57,8 +66,11 @@ const TechnologyPage = () => {
             </p>
           </div>
 
-          <div className="space-y-6 animate-fade-up">
-            <h2 className="text-2xl font-bold text-primary">How It All Works Together</h2>
+          <div className="space-y-6 animate-fade-up bg-[#F1F0FB] p-8 rounded-lg">
+            <div className="flex items-center gap-4">
+              <Speaker className="w-8 h-8 text-primary" />
+              <h2 className="text-2xl font-bold text-primary">How It All Works Together</h2>
+            </div>
             <p className="text-gray-600">
               When you point Scout at a product, the camera captures the image and 
               sends it to the Raspberry Pi. The YOLO model quickly identifies the 
