@@ -4,10 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import EyeCursor from "@/components/EyeCursor";
+import { searchProducts } from "@/lib/mockApi";
+import type { Product } from "@/lib/mockApi";
 
 const ShoppingListPage = () => {
   const [items, setItems] = useState<string[]>([]);
   const [newItem, setNewItem] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Product[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
   const { logout } = useAuth();
   const { toast } = useToast();
 
@@ -23,6 +28,26 @@ const ShoppingListPage = () => {
   useEffect(() => {
     localStorage.setItem("shoppingList", JSON.stringify(items));
   }, [items]);
+
+  const handleSearch = async (query: string) => {
+    setSearchQuery(query);
+    if (query.trim()) {
+      setIsSearching(true);
+      try {
+        const results = await searchProducts(query);
+        setSearchResults(results);
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "Failed to search products",
+        });
+      } finally {
+        setIsSearching(false);
+      }
+    } else {
+      setSearchResults([]);
+    }
+  };
 
   const handleAddItem = (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,6 +82,50 @@ const ShoppingListPage = () => {
         </div>
 
         <div className="bg-white rounded-lg shadow-lg p-6">
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold mb-4">Search Products</h2>
+            <Input
+              value={searchQuery}
+              onChange={(e) => handleSearch(e.target.value)}
+              placeholder="Search for products..."
+              className="mb-4"
+            />
+            {isSearching ? (
+              <p>Searching...</p>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {searchResults.map((product) => (
+                  <div
+                    key={product.id}
+                    className="p-4 border rounded-lg hover:shadow-md transition-shadow"
+                  >
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="w-full h-40 object-cover rounded-md mb-2"
+                    />
+                    <h3 className="font-semibold">{product.name}</h3>
+                    <p className="text-gray-600">{product.price}</p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="mt-2"
+                      onClick={() => {
+                        setItems([...items, product.name]);
+                        toast({
+                          title: "Item Added",
+                          description: `${product.name} has been added to your shopping list.`,
+                        });
+                      }}
+                    >
+                      Add to List
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
           <form onSubmit={handleAddItem} className="flex gap-4 mb-6">
             <Input
               value={newItem}
