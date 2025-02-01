@@ -25,15 +25,15 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#4ADE80", // Lime green
+          DEFAULT: "#4ADE80",
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#86EFAC", // Lighter lime green
-          foreground: "#064E3B", // Dark green for contrast
+          DEFAULT: "#86EFAC",
+          foreground: "#064E3B",
         },
         accent: {
-          DEFAULT: "#34D399", // Another shade of green
+          DEFAULT: "#34D399",
           foreground: "#FFFFFF",
         },
         destructive: {
@@ -52,6 +52,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      perspective: {
+        '1000': '1000px',
+      },
+      rotate: {
+        'y-90': 'rotateY(90deg)',
+        'y-0': 'rotateY(0deg)',
       },
       keyframes: {
         "fade-up": {
