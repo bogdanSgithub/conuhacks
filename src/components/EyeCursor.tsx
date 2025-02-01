@@ -34,7 +34,7 @@ const EyeCursor = () => {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <div className="fixed top-4 right-4 z-50 cursor-help">
+        <div className="fixed top-4 right-4 z-[9999] cursor-help">
           <div className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
             <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
               <div 
