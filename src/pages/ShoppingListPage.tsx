@@ -11,7 +11,6 @@ const ShoppingListPage = () => {
   const { logout } = useAuth();
   const { toast } = useToast();
 
-  // Load items from localStorage when component mounts
   useEffect(() => {
     const savedItems = localStorage.getItem("shoppingList");
     if (savedItems) {
@@ -19,7 +18,6 @@ const ShoppingListPage = () => {
     }
   }, []);
 
-  // Save items to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem("shoppingList", JSON.stringify(items));
   }, [items]);
@@ -71,7 +69,7 @@ const ShoppingListPage = () => {
             {items.map((item, index) => (
               <div
                 key={index}
-                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg"
+                className="flex items-center justify-between p-4 bg-gray-50 rounded-lg animate-fade-up"
               >
                 <span>{item}</span>
                 <Button
