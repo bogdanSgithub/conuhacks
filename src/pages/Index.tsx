@@ -14,29 +14,29 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between h-16">
             <div className="text-xl font-bold text-primary">Scout</div>
-            <div className="space-x-4">
-              <Link to="/technology">
-                <Button variant="ghost">Technology</Button>
-              </Link>
-              {isAuthenticated ? (
-                <Link to="/shopping-list">
-                  <Button variant="ghost">My List</Button>
+            <div className="flex items-center gap-4">
+              <EyeCursor />
+              <div className="space-x-4">
+                <Link to="/technology">
+                  <Button variant="ghost">Technology</Button>
                 </Link>
-              ) : (
-                <Link to="/login">
-                  <Button variant="ghost">Login</Button>
-                </Link>
-              )}
-              <Button className="bg-accent hover:bg-accent/90">Pre-order</Button>
+                {isAuthenticated ? (
+                  <Link to="/shopping-list">
+                    <Button variant="ghost">My List</Button>
+                  </Link>
+                ) : (
+                  <Link to="/login">
+                    <Button variant="ghost">Login</Button>
+                  </Link>
+                )}
+                <Button className="bg-accent hover:bg-accent/90">Pre-order</Button>
+              </div>
             </div>
           </nav>
         </div>
       </header>
       
       <main className="pt-16">
-        <div className="container mx-auto px-4 flex justify-center mt-8 mb-12">
-          <EyeCursor />
-        </div>
         <Hero />
         <Features />
         

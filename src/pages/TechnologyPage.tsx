@@ -7,16 +7,16 @@ const TechnologyPage = () => {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8">
-        <div className="flex items-center mb-8">
+        <div className="flex items-center justify-between mb-8">
           <Link to="/">
             <Button variant="ghost" className="gap-2">
               <ArrowLeft className="w-4 h-4" />
               Back to Home
             </Button>
           </Link>
+          <EyeCursor />
         </div>
 
-        <EyeCursor />
         <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4 text-center mt-8">
           Technology Behind Scout
         </h1>
