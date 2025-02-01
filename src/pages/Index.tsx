@@ -10,7 +10,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
-      <EyeCursor />
       <header className="fixed top-0 w-full bg-white/80 backdrop-blur-sm z-50 border-b">
         <div className="container mx-auto px-4">
           <nav className="flex items-center justify-between h-16">
@@ -35,6 +34,9 @@ const Index = () => {
       </header>
       
       <main className="pt-16">
+        <div className="container mx-auto px-4 flex justify-center mt-8 mb-12">
+          <EyeCursor />
+        </div>
         <Hero />
         <Features />
         

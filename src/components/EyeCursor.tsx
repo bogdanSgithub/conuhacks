@@ -25,6 +25,8 @@ const EyeCursor = () => {
 
       eye.style.setProperty('--mouse-x', `${x}px`);
       eye.style.setProperty('--mouse-y', `${y}px`);
+      eye.style.setProperty('--shadow-x', `${x * 2}px`);
+      eye.style.setProperty('--shadow-y', `${y * 2}px`);
     };
 
     window.addEventListener('mousemove', handleMouseMove);
@@ -35,7 +37,7 @@ const EyeCursor = () => {
     <Tooltip>
       <TooltipTrigger asChild>
         <div className="cursor-help">
-          <div className="w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center">
+          <div className="w-12 h-12 bg-white rounded-full shadow-[var(--shadow-x)_var(--shadow-y)_8px_rgba(0,0,0,0.1)] flex items-center justify-center transition-shadow duration-200">
             <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center">
               <div 
                 ref={eyeRef}
