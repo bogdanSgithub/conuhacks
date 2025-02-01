@@ -1,48 +1,86 @@
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
+import { Hero } from "@/components/Hero";
 import { Features } from "@/components/Features";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import EyeCursor from "@/components/EyeCursor";
-import { ArrowRight } from "lucide-react";
+import { useAuth } from "@/contexts/AuthContext";
 
 const Index = () => {
+  const { isAuthenticated } = useAuth();
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen">
       <EyeCursor />
-      <nav className="container mx-auto px-4 py-6">
-        <div className="flex justify-between items-center">
-          <Link to="/" className="text-2xl font-bold text-primary">Scout</Link>
-          <div className="space-x-4">
-            <Link to="/technology" className="text-gray-600 hover:text-primary">Technology</Link>
-            <Link to="/login" className="text-gray-600 hover:text-primary">Login</Link>
-          </div>
+      <header className="fixed top-0 w-full bg-white/80 backdrop-blur-sm z-50 border-b">
+        <div className="container mx-auto px-4">
+          <nav className="flex items-center justify-between h-16">
+            <div className="text-xl font-bold text-primary">Scout</div>
+            <div className="space-x-4">
+              <Link to="/features">
+                <Button variant="ghost">Features</Button>
+              </Link>
+              {isAuthenticated ? (
+                <Link to="/shopping-list">
+                  <Button variant="ghost">My List</Button>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <Button variant="ghost">Login</Button>
+                </Link>
+              )}
+              <Button className="bg-accent hover:bg-accent/90">Pre-order</Button>
+            </div>
+          </nav>
         </div>
-      </nav>
-
-      <main className="container mx-auto px-4">
-        <section className="py-20 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6">
-            Your Smart Shopping Assistant
-          </h1>
-          <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-            Scout helps visually impaired individuals navigate stores and find products independently
-          </p>
-          <Button size="lg" className="gap-2">
-            Get Started
-            <ArrowRight className="w-4 h-4" />
-          </Button>
-        </section>
-
+      </header>
+      
+      <main className="pt-16">
+        <Hero />
         <Features />
-
-        <section className="py-20 text-center">
-          <h2 className="text-3xl font-bold text-primary mb-6">
-            Ready to Transform Your Shopping Experience?
-          </h2>
-          <Button size="lg" className="bg-accent hover:bg-accent/90">
-            Pre-order Now
-          </Button>
+        
+        <section className="py-20 bg-primary text-white text-center">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+              Ready to Experience Shopping Independence?
+            </h2>
+            <p className="text-xl mb-8 opacity-90">
+              Pre-order Scout today and be among the first to transform your shopping experience.
+            </p>
+            <Button size="lg" className="bg-white text-primary hover:bg-white/90">
+              Pre-order Now
+            </Button>
+          </div>
         </section>
       </main>
+      
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-lg font-bold mb-4">Scout</h3>
+              <p className="opacity-70">
+                Empowering visually impaired people with shopping independence.
+              </p>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold mb-4">Contact</h3>
+              <p className="opacity-70">Email: info@scoutdevice.com</p>
+              <p className="opacity-70">Phone: (555) 123-4567</p>
+            </div>
+            <div>
+              <h3 className="text-lg font-bold mb-4">Follow Us</h3>
+              <div className="space-x-4">
+                <a href="#" className="opacity-70 hover:opacity-100">Twitter</a>
+                <a href="#" className="opacity-70 hover:opacity-100">LinkedIn</a>
+                <a href="#" className="opacity-70 hover:opacity-100">Instagram</a>
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 pt-8 border-t border-white/10 text-center opacity-70">
+            <p>&copy; {new Date().getFullYear()} Scout. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
