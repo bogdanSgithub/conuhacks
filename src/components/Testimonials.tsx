@@ -20,7 +20,7 @@ const testimonials = [
 
 export const Testimonials = () => {
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-primary mb-12">
           What Our Users Say
@@ -29,15 +29,15 @@ export const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <Card 
               key={testimonial.author}
-              className="animate-fade-up"
+              className="animate-fade-up border-primary/10"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader>
-                <p className="text-lg italic text-secondary">{testimonial.quote}</p>
+                <p className="text-lg italic text-secondary-foreground">{testimonial.quote}</p>
               </CardHeader>
               <CardContent>
-                <p className="font-semibold">{testimonial.author}</p>
-                <p className="text-sm text-secondary">{testimonial.role}</p>
+                <p className="font-semibold text-primary">{testimonial.author}</p>
+                <p className="text-sm text-secondary-foreground">{testimonial.role}</p>
               </CardContent>
             </Card>
           ))}
