@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,19 @@ const ShoppingListPage = () => {
   const [newItem, setNewItem] = useState("");
   const { logout } = useAuth();
   const { toast } = useToast();
+
+  // Load items from localStorage when component mounts
+  useEffect(() => {
+    const savedItems = localStorage.getItem("shoppingList");
+    if (savedItems) {
+      setItems(JSON.parse(savedItems));
+    }
+  }, []);
+
+  // Save items to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("shoppingList", JSON.stringify(items));
+  }, [items]);
 
   const handleAddItem = (e: React.FormEvent) => {
     e.preventDefault();
