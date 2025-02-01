@@ -16,8 +16,8 @@ const Index = () => {
           <nav className="flex items-center justify-between h-16">
             <div className="text-xl font-bold text-primary">Scout</div>
             <div className="space-x-4">
-              <Link to="/features">
-                <Button variant="ghost">Features</Button>
+              <Link to="/technology">
+                <Button variant="ghost">Technology</Button>
               </Link>
               {isAuthenticated ? (
                 <Link to="/shopping-list">
