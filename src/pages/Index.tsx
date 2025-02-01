@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import { Features } from "@/components/Features";
 import { Testimonials } from "@/components/Testimonials";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   return (
@@ -12,7 +13,9 @@ const Index = () => {
             <div className="text-xl font-bold text-primary">Scout</div>
             <div className="space-x-4">
               <Button variant="ghost">Features</Button>
-              <Button variant="ghost">Testimonials</Button>
+              <Link to="/testimonials">
+                <Button variant="ghost">Testimonials</Button>
+              </Link>
               <Button className="bg-accent hover:bg-accent/90">Pre-order</Button>
             </div>
           </nav>
