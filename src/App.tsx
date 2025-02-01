@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import FeaturesPage from "./pages/FeaturesPage";
+import TechnologyPage from "./pages/TechnologyPage";
 import LoginPage from "./pages/LoginPage";
 import ShoppingListPage from "./pages/ShoppingListPage";
 
@@ -21,7 +21,7 @@ const App = () => (
         <AuthProvider>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/features" element={<FeaturesPage />} />
+            <Route path="/technology" element={<TechnologyPage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/shopping-list" element={<ShoppingListPage />} />
             <Route path="*" element={<NotFound />} />
