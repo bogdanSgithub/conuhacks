@@ -2,43 +2,44 @@ import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const testimonials = [
   {
     quote: "Scout has completely transformed my shopping experience. I can now confidently navigate stores and find exactly what I need.",
     author: "Sarah M.",
     role: "Scout User",
-    image: "/placeholder.svg"
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=200&h=200&fit=crop"
   },
   {
     quote: "The accuracy of product recognition is incredible. It's like having a personal shopping assistant with me at all times.",
     author: "Michael R.",
     role: "Beta Tester",
-    image: "/placeholder.svg"
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=200&h=200&fit=crop"
   },
   {
     quote: "As someone who lost sight later in life, Scout helps me maintain my shopping routine with confidence.",
     author: "Patricia L.",
     role: "Scout User",
-    image: "/placeholder.svg"
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&h=200&fit=crop"
   },
   {
     quote: "The voice feedback is clear and the interface is so intuitive. Scout has made shopping enjoyable again.",
     author: "James K.",
     role: "Scout User",
-    image: "/placeholder.svg"
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=200&h=200&fit=crop"
   },
   {
     quote: "I appreciate how Scout helps me identify products and read labels. It's given me back my independence.",
     author: "Emily W.",
     role: "Scout User",
-    image: "/placeholder.svg"
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=200&h=200&fit=crop"
   },
   {
     quote: "The team behind Scout really understands our needs. This device is a game-changer for the visually impaired community.",
     author: "David H.",
     role: "Accessibility Advocate",
-    image: "/placeholder.svg"
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=200&h=200&fit=crop"
   }
 ];
 
@@ -53,10 +54,8 @@ const TestimonialsPage = () => {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.remove("opacity-0");
-              entry.target.classList.remove("translate-y-10");
-              entry.target.classList.add("opacity-100");
-              entry.target.classList.add("translate-y-0");
+              entry.target.classList.remove("opacity-0", "translate-y-10", "rotate-y-90");
+              entry.target.classList.add("opacity-100", "translate-y-0", "rotate-y-0");
               observer.unobserve(entry.target);
             }
           });
@@ -100,20 +99,23 @@ const TestimonialsPage = () => {
             <div
               key={index}
               ref={(el) => (observerRefs.current[index] = el)}
-              className="bg-white rounded-lg shadow-lg p-6 transform transition-all duration-700 opacity-0 translate-y-10"
-              style={{ transitionDelay: `${index * 100}ms` }}
+              className="bg-white rounded-lg shadow-lg p-6 transform transition-all duration-1000 opacity-0 translate-y-10 rotate-y-90 hover:scale-105 hover:rotate-y-[-5deg] perspective-1000"
+              style={{ 
+                transitionDelay: `${index * 100}ms`,
+                transformStyle: 'preserve-3d'
+              }}
             >
-              <div className="mb-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.author}
-                  className="w-16 h-16 rounded-full mx-auto mb-4"
-                />
-                <p className="text-lg italic text-gray-700 mb-4">"{testimonial.quote}"</p>
-                <div className="border-t border-gray-200 pt-4">
-                  <p className="font-semibold text-primary">{testimonial.author}</p>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
-                </div>
+              <div className="mb-4 relative">
+                <div className="absolute inset-0 bg-primary/10 rounded-full transform -rotate-6 scale-110"></div>
+                <Avatar className="w-16 h-16 mx-auto relative z-10">
+                  <AvatarImage src={testimonial.image} alt={testimonial.author} />
+                  <AvatarFallback>{testimonial.author[0]}</AvatarFallback>
+                </Avatar>
+              </div>
+              <p className="text-lg italic text-gray-700 mb-4 relative z-10">"{testimonial.quote}"</p>
+              <div className="border-t border-gray-200 pt-4">
+                <p className="font-semibold text-primary">{testimonial.author}</p>
+                <p className="text-sm text-gray-600">{testimonial.role}</p>
               </div>
             </div>
           ))}
