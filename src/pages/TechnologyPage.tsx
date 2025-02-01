@@ -6,7 +6,6 @@ import EyeCursor from "@/components/EyeCursor";
 const TechnologyPage = () => {
   return (
     <div className="min-h-screen bg-white">
-      <EyeCursor />
       <div className="container mx-auto px-4 py-8">
         <div className="flex items-center mb-8">
           <Link to="/">
@@ -17,7 +16,8 @@ const TechnologyPage = () => {
           </Link>
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4 text-center">
+        <EyeCursor />
+        <h1 className="text-4xl md:text-5xl font-bold text-primary mb-4 text-center mt-8">
           Technology Behind Scout
         </h1>
         <p className="text-xl text-gray-600 mb-12 text-center max-w-2xl mx-auto">

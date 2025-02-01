@@ -45,13 +45,15 @@ const ShoppingListPage = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <EyeCursor />
       <div className="container mx-auto px-4 py-8">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-primary">My Shopping List</h1>
-          <Button variant="outline" onClick={logout}>
-            Logout
-          </Button>
+          <div className="flex items-center gap-4">
+            <EyeCursor />
+            <Button variant="outline" onClick={logout}>
+              Logout
+            </Button>
+          </div>
         </div>
 
         <div className="bg-white rounded-lg shadow-lg p-6">
