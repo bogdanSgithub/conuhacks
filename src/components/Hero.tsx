@@ -12,6 +12,10 @@ export const Hero = () => {
     return () => clearInterval(flipInterval);
   }, []);
 
+  const handleMouseEnter = () => {
+    setIsFlipped(prev => !prev);
+  };
+
   return (
     <section className="relative py-20 overflow-hidden bg-white">
       <div className="container mx-auto px-4">
@@ -32,6 +36,7 @@ export const Hero = () => {
               className={`relative transition-transform duration-1000 w-full h-[400px] [transform-style:preserve-3d] cursor-pointer ${
                 isFlipped ? '[transform:rotateY(180deg)]' : ''
               }`}
+              onMouseEnter={handleMouseEnter}
             >
               {/* Front side */}
               <img
