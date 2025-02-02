@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 const features = [
   {
     title: "Advanced Object Recognition",
-    description: "Identifies products and their relative positions quickly",
+    description: "Identifies products from the user's shopping list efficiently",
     icon: Camera,
   },
   {
