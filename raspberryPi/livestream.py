@@ -35,9 +35,10 @@ def generate_frames():
             print("Error: Failed to capture image")
             break
 
+        frame_height, frame_width = frame.shape[:2]
+
         # Run YOLO model on the frame
         results = model(frame)
-        
         detected_objects = results[0].boxes.cls.tolist()
         object_found = any(obj_id in detected_objects for obj_id in objects_to_detect)
 
@@ -46,6 +47,25 @@ def generate_frames():
 
         # Annotate frame with detection results
         annotated_frame = results[0].plot()
+        bounding_boxes = results[0].boxes.xyxy.tolist()
+        for i, box in enumerate(bounding_boxes):
+            x_min, y_min, x_max, y_max = box  # Coordinates of the bounding box corners
+            # Optionally, you can get the class of the object
+
+            center_x = (x_min + x_max) / 2
+            center_y = (y_min + y_max) / 2
+
+            if center_x < frame_width / 2 and center_y < frame_height / 2:
+                region = "Top Left"
+            elif center_x >= frame_width / 2 and center_y < frame_height / 2:
+                region = "Top Right"
+            elif center_x < frame_width / 2 and center_y >= frame_height / 2:
+                region = "Bottom Left"
+            else:
+                region = "Bottom Right"
+
+        cls_id = detected_objects[i]
+        print(f"Object {i+1}: Class ID: {cls_id}, Bounding Box: [{x_min}, {y_min}, {x_max}, {y_max}], Region: {region}")
 
         # Get inference time and calculate FPS
         inference_time = results[0].speed['inference']
