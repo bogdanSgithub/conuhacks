@@ -5,6 +5,7 @@ from ultralytics import YOLO
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
+#from spchRec import text_to_speech
 
 app = FastAPI()
 
@@ -38,7 +39,7 @@ def generate_frames():
         frame_height, frame_width = frame.shape[:2]
 
         # Run YOLO model on the frame
-        results = model(frame)
+        results = model.predict(frame, imgsz = 320)
         detected_objects = results[0].boxes.cls.tolist()
         object_found = any(obj_id in detected_objects for obj_id in objects_to_detect)
 
@@ -65,7 +66,10 @@ def generate_frames():
                 region = "Bottom Right"
 
         cls_id = detected_objects[i]
-        print(f"Object {i+1}: Class ID: {cls_id}, Bounding Box: [{x_min}, {y_min}, {x_max}, {y_max}], Region: {region}")
+        message = f"Object of class id {cls_id} was found in {region}"
+        print(message)
+        #text_to_speech(message)
+        #print(f"Object {i+1}: Class ID: {cls_id}, Bounding Box: [{x_min}, {y_min}, {x_max}, {y_max}], Region: {region}")
 
         # Get inference time and calculate FPS
         inference_time = results[0].speed['inference']
