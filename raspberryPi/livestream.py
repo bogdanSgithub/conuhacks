@@ -1,11 +1,13 @@
 import cv2
 import uvicorn
 import numpy as np
+import imutils
 from ultralytics import YOLO
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 #from spchRec import text_to_speech
+from add_remove_item import text_to_speech
 
 app = FastAPI()
 
@@ -26,12 +28,15 @@ objects_to_detect = [0, 73]  # Modify this list for specific object classes
 def generate_frames():
     cap = cv2.VideoCapture(0)  # Open the default camera
 
+
     if not cap.isOpened():
         print("Error: Could not access the camera")
         return
 
     while True:
+
         ret, frame = cap.read()
+        frame = imutils.resize(frame, width=320)
         if not ret:
             print("Error: Failed to capture image")
             break
@@ -39,7 +44,7 @@ def generate_frames():
         frame_height, frame_width = frame.shape[:2]
 
         # Run YOLO model on the frame
-        results = model.predict(frame, imgsz = 320)
+        results = model.track(frame, imgsz = 320)
         detected_objects = results[0].boxes.cls.tolist()
         object_found = any(obj_id in detected_objects for obj_id in objects_to_detect)
 
@@ -65,10 +70,10 @@ def generate_frames():
             else:
                 region = "Bottom Right"
 
-        cls_id = detected_objects[i]
-        message = f"Object of class id {cls_id} was found in {region}"
-        print(message)
-        #text_to_speech(message)
+            cls_id = detected_objects[i]
+            message = f"Object of class id {cls_id} was found in {region}"
+            print(message)
+            text_to_speech(message)
         #print(f"Object {i+1}: Class ID: {cls_id}, Bounding Box: [{x_min}, {y_min}, {x_max}, {y_max}], Region: {region}")
 
         # Get inference time and calculate FPS
