@@ -33,7 +33,7 @@ export const Hero = () => {
           </div>
           <div className="flex-1 [perspective:1000px]">
             <div 
-              className={`relative transition-transform duration-1000 w-full h-[400px] [transform-style:preserve-3d] cursor-pointer ${
+              className={`relative transition-transform duration-1000 w-full h-[300px] [transform-style:preserve-3d] cursor-pointer ${
                 isFlipped ? '[transform:rotateY(180deg)]' : ''
               }`}
               onMouseEnter={handleMouseEnter}
