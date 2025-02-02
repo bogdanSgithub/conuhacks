@@ -1,3 +1,4 @@
+from sys import setrecursionlimit
 from fastapi import FastAPI, HTTPException
 from beanie import init_beanie, Document, PydanticObjectId
 from config import database
@@ -10,7 +11,7 @@ app = FastAPI()
 class Product(Document):
     name: str
     quantity: int
-
+    img : str
     class Settings:
         collection = "products"
 
@@ -23,6 +24,7 @@ async def startup_event():
 class ProductCreate(BaseModel):
     name: str
     quantity: int
+    img: str
 
 
 # Create Product
