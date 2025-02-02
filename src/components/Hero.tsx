@@ -42,13 +42,13 @@ export const Hero = () => {
               <img
                 src="/lovable-uploads/c10291cb-fe20-428a-a4fe-a3daad8e7de6.png"
                 alt="Scout device with camera and speaker"
-                className="absolute w-full h-full object-contain rounded-lg shadow-xl [backface-visibility:hidden]"
+                className="absolute w-full h-full object-cover rounded-lg shadow-xl [backface-visibility:hidden]"
               />
               {/* Back side */}
               <img
                 src="/lovable-uploads/e9e80b91-7db2-4ff4-818f-f8c791a342d6.png"
                 alt="Scout device in action detecting products"
-                className="absolute w-full h-full object-contain rounded-lg shadow-xl [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                className="absolute w-full h-full object-cover rounded-lg shadow-xl [backface-visibility:hidden] [transform:rotateY(180deg)]"
               />
             </div>
           </div>
