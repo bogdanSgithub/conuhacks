@@ -9,6 +9,19 @@ from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from add_remove_item import text_to_speech
+from openai import OpenAI
+from dotenv import load_dotenv
+import os
+import base64
+from io import BytesIO
+
+load_dotenv()
+
+api_key = os.getenv("OPENAI_API_KEY")
+client = None
+
+if api_key:
+    client = OpenAI(api_key=api_key)
 
 app = FastAPI()
 
@@ -36,6 +49,21 @@ app.add_middleware(
 
 model = YOLO("yolov8n.pt")
 objects_to_detect = {39: "water bottle", 46: "banana", 47: "apple"}
+
+def get_position_object(frame, information):
+    """Sends the image and detected objects to ChatGPT for position analysis."""
+    _, buffer = cv2.imencode(".jpg", frame)
+    image_base64 = base64.b64encode(buffer).decode("utf-8")
+
+    completion = client.chat.completions.create(
+        model="gpt-4",
+        store=True,
+        messages=[
+            {"role": "user", "content": f"Provide a useful message to a visually impaired user to help them find the product at the right position. The camera is pointing towards their left. Tell them that, make the message a little longer " + information},
+        ]
+    )
+
+    return completion.choices[0].message.content
 
 cap = cv2.VideoCapture(0)
 
@@ -72,7 +100,7 @@ def process_frame(frame):
 
     if object_found:
         print(f"Detected object(s): {detected_objects}")
-        annotated_frame = frame 
+        annotated_frame = frame
         bounding_boxes = results[0].boxes.xyxy.tolist()
 
         for i, box in enumerate(bounding_boxes):
@@ -88,7 +116,7 @@ def process_frame(frame):
                          "Bottom Left" if center_x < frame_width / 2 and center_y >= frame_height / 2 else \
                          "Bottom Right"
 
-                message = f"{objects_to_detect[cls_id]} was found in {region}"
+                message = get_position_object(frame, objects_to_detect[cls_id] + "was found in " + region)
                 detection_messages.append(message)
 
                 # Draw the bounding box around the detected object
