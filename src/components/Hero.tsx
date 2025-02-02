@@ -40,15 +40,15 @@ export const Hero = () => {
             >
               {/* Front side */}
               <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158"
-                alt="Woman using Scout device"
-                className="absolute w-full h-full object-cover rounded-lg shadow-xl [backface-visibility:hidden]"
+                src="/lovable-uploads/c10291cb-fe20-428a-a4fe-a3daad8e7de6.png"
+                alt="Scout device with camera and speaker"
+                className="absolute w-full h-full object-contain rounded-lg shadow-xl [backface-visibility:hidden]"
               />
               {/* Back side */}
               <img
-                src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e"
-                alt="Scout device demonstration"
-                className="absolute w-full h-full object-cover rounded-lg shadow-xl [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                src="/lovable-uploads/b429e96d-cb4c-4c8b-991f-2d30eb2bf597.png"
+                alt="Scout device in action detecting products"
+                className="absolute w-full h-full object-contain rounded-lg shadow-xl [backface-visibility:hidden] [transform:rotateY(180deg)]"
               />
             </div>
           </div>
