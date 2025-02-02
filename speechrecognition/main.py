@@ -1,7 +1,5 @@
 import speech_recognition as sr
-import pyttsx3
-import webrtcvad
-import numpy
+import espeakng
 
 # Initialize recognizer
 recognizer = sr.Recognizer()
@@ -19,10 +17,8 @@ def check_audio(self, framex):
     return self.vad.is_speech(frame, sample_rate)
 
 def text_to_speech(text):
-    engine = pyttsx3.init()
-    engine.say(text)         # Speak the text
-    engine.runAndWait()
-
+    esng = espeakng.ESpeakNG()
+    esng.say(text)
 
 def listen_and_add():
     with sr.Microphone() as source:
@@ -66,5 +62,5 @@ def listen_and_add():
 
 # Keep listening for commands
 while True:
-    listen_and_add()
-    print(f"Current list: {word_list}")
+	listen_and_add()
+	print(f"Current list: {word_list}")
