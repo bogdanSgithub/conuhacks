@@ -1,16 +1,11 @@
-import { Camera, Navigation, ShoppingCart, Sparkles } from "lucide-react";
+import { Camera, ShoppingCart, Sparkles } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 const features = [
   {
     title: "Advanced Object Recognition",
-    description: "Instantly identifies products and reads labels accurately",
+    description: "Identifies products and their relative positions quickly",
     icon: Camera,
-  },
-  {
-    title: "Navigation Assistance",
-    description: "Guides users through stores with precise directions",
-    icon: Navigation,
   },
   {
     title: "Product Finding",
@@ -19,7 +14,7 @@ const features = [
   },
   {
     title: "Smart AI Technology",
-    description: "Learns user preferences for better recommendations",
+    description: "Speech recognition enables voice commands for managing shopping lists",
     icon: Sparkles,
   },
 ];
@@ -31,7 +26,7 @@ export const Features = () => {
         <h2 className="text-3xl md:text-4xl font-bold text-center text-primary mb-12">
           Key Features
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <Card 
               key={feature.title} 
