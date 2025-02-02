@@ -5,9 +5,17 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import EyeCursor from "@/components/EyeCursor";
 
+interface ProductModel {
+  id: string;
+  name: string;
+  quantity: number;
+  img: string;
+}
+
 const ShoppingListPage = () => {
-  const [items, setItems] = useState<string[]>([]);
+  const [items, setItems] = useState<ProductModel[]>([]);
   const [newItem, setNewItem] = useState("");
+  const [newQuantity, setNewQuantity] = useState(1);
   const { logout } = useAuth();
   const { toast } = useToast();
 
@@ -25,8 +33,15 @@ const ShoppingListPage = () => {
   const handleAddItem = (e: React.FormEvent) => {
     e.preventDefault();
     if (newItem.trim()) {
-      setItems([...items, newItem.trim()]);
+      const newProduct: ProductModel = {
+        id: crypto.randomUUID(),
+        name: newItem.trim(),
+        quantity: newQuantity,
+        img: "/placeholder.svg", // Default placeholder image
+      };
+      setItems([...items, newProduct]);
       setNewItem("");
+      setNewQuantity(1);
       toast({
         title: "Item Added",
         description: `${newItem} has been added to your shopping list.`,
@@ -34,8 +49,8 @@ const ShoppingListPage = () => {
     }
   };
 
-  const handleRemoveItem = (index: number) => {
-    const newItems = items.filter((_, i) => i !== index);
+  const handleRemoveItem = (id: string) => {
+    const newItems = items.filter(item => item.id !== id);
     setItems(newItems);
     toast({
       title: "Item Removed",
@@ -64,20 +79,39 @@ const ShoppingListPage = () => {
               placeholder="Add new item..."
               className="flex-1"
             />
+            <Input
+              type="number"
+              value={newQuantity}
+              onChange={(e) => setNewQuantity(parseInt(e.target.value) || 1)}
+              min="1"
+              className="w-24"
+            />
             <Button type="submit">Add Item</Button>
           </form>
 
           <div className="space-y-4">
-            {items.map((item, index) => (
+            {items.map((item) => (
               <div
-                key={index}
+                key={item.id}
                 className="flex items-center justify-between p-4 bg-gray-50 rounded-lg animate-fade-up"
               >
-                <span>{item}</span>
+                <div className="flex items-center gap-4">
+                  <img
+                    src={item.img}
+                    alt={item.name}
+                    className="w-12 h-12 object-cover rounded"
+                  />
+                  <div>
+                    <span className="font-medium">{item.name}</span>
+                    <span className="text-sm text-gray-500 ml-2">
+                      Qty: {item.quantity}
+                    </span>
+                  </div>
+                </div>
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => handleRemoveItem(index)}
+                  onClick={() => handleRemoveItem(item.id)}
                   className="text-red-500 hover:text-red-700"
                 >
                   Remove
