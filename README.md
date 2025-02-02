@@ -1,2 +1,0 @@
-# conuhacks
-Our project
