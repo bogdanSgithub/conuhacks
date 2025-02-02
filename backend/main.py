@@ -1,11 +1,19 @@
 from sys import setrecursionlimit
 from fastapi import FastAPI, HTTPException
 from beanie import init_beanie, Document, PydanticObjectId
+from fastapi.middleware.cors import CORSMiddleware
 from config import database
 from typing import List
 from pydantic import BaseModel
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:8080"],  
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Product Model
 class Product(Document):
@@ -14,7 +22,9 @@ class Product(Document):
     img : str
     class Settings:
         collection = "products"
-
+    @property
+    def id(self) -> str:
+        return str(self.pk) 
 # Startup event to initialize Beanie
 @app.on_event("startup")
 async def startup_event():

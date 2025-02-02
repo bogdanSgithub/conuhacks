@@ -12,6 +12,20 @@ from add_remove_item import text_to_speech
 
 app = FastAPI()
 
+class Product(Document):
+    name: str
+    quantity: int
+    img : str
+    class Settings:
+        collection = "products"
+    @property
+    def id(self) -> str:
+        return str(self.pk) 
+    
+class ProductCreate(BaseModel):
+    name: str
+    quantity: int
+    img: str
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -123,5 +137,10 @@ def generate_frames():
 def video_feed():
     return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
 
+@app.post("/products/", response_model=Product)
+async def create_product(product: ProductCreate):
+    new_product = Product(**product.dict())
+    await new_product.insert()
+    return new_product
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
