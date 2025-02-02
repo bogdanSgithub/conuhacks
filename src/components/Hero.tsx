@@ -46,7 +46,7 @@ export const Hero = () => {
               />
               {/* Back side */}
               <img
-                src="/lovable-uploads/6a9fd491-ccb5-4808-b26d-9a3e9c8b9528.png"
+                src="/lovable-uploads/9061a5a6-9e53-4b65-8702-5dc669144610.png"
                 alt="Scout device in action detecting products"
                 className="absolute w-full h-full object-contain rounded-lg shadow-xl [backface-visibility:hidden] [transform:rotateY(180deg)]"
               />
